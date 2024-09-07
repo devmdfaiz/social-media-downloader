@@ -2,32 +2,121 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    /* Name: custom color palette
+       Author: Ilias Ism
+       URL: https://gradient.page */
+
+    /* CSS: .bg-gradient { background: var(--gradient) } */
+    --gradient: linear-gradient(to top left, #1488cc, #2b32b2);
+
+    --background: 215 53.3% 3.52%;
+    --foreground: 215 8.2% 97.2%;
+
+    --muted: 215 41% 13.2%;
+    --muted-foreground: 215 8.2% 54.4%;
+
+    --popover: 215 48.6% 5.72%;
+    --popover-foreground: 215 8.2% 97.2%;
+
+    --card: 215 48.6% 5.72%;
+    --card-foreground: 215 8.2% 97.2%;
+
+    --border: 215 41% 13.2%;
+    --input: 215 41% 13.2%;
+
+    --primary: 215 82% 44%;
+    --primary-foreground: 215 8.2% 97.2%;
+
+    --secondary: 215 41% 13.2%;
+    --secondary-foreground: 215 8.2% 97.2%;
+
+    --accent: 215 41% 13.2%;
+    --accent-foreground: 215 8.2% 97.2%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 215 8.2% 97.2%;
+
+    --ring: 215 82% 44%;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.container {
+  min-height: calc(100vh - 61px);
+  width: 1536px;
+}
+
+@media (max-width: 1536px) {
+  .container {
+    width: 1280px;
   }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    width: 1024px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    width: 768px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 640px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (min-height: 1023px) {
+  .container {
+    min-height: calc(100vh - 70px);
+  }
+}
+
+/* tiptap styling */
+.tiptap h1 {
+  @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+}
+.tiptap h2 {
+  @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+}
+.tiptap h3 {
+  @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+}
+.tiptap h4 {
+  @apply scroll-m-20 text-xl font-semibold tracking-tight;
+}
+.tiptap p {
+  @apply leading-7 [&:not(:first-child)]:mt-6;
+}
+.tiptap blockquote {
+  @apply mt-6 border-l-2 pl-6 italic;
+}
+.tiptap ul {
+  @apply my-6 ml-6 list-disc [&>li]:mt-2;
+}
+.tiptap ol {
+  @apply my-6 ml-6 list-decimal [&>li]:mt-2;
+}
+.tiptap a {
+  @apply font-medium text-blue-600 dark:text-blue-500 hover:underline cursor-pointer;
 }
