@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { TypographyP } from "./typography";
 
 const footerLinks = [
@@ -17,14 +16,14 @@ const footerLinks = [
   },
 ];
 
-const Footer = ({ footerCode }: { footerCode: string }) => {
+const Footer = ({ footerCode, footer }: { footerCode: string, footer: string }) => {
   return (
     <footer className="p-4">
       {footerCode && (
         <div dangerouslySetInnerHTML={{ __html: footerCode }}></div>
       )}
       <div className="flex justify-center items-center gap-5 flex-wrap">
-        <TypographyP>© 2024 Downloady. All rights reserved.</TypographyP>
+        <TypographyP>{footer}</TypographyP>
         <ul className="flex justify-center items-center gap-3">
           {footerLinks.map((link, i) => {
             return (

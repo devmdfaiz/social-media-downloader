@@ -18,7 +18,9 @@ export default async function RootLayout({
     res = "error";
   }
 
-  const { scripts }: TResponse = res;
+  const { scripts, footer }: TResponse = res;
+
+  const footerData = footer?.footer;
 
   return (
     <>
@@ -35,7 +37,7 @@ export default async function RootLayout({
         ) : (
           <div className="w-screen min-h-screen container">{children}</div>
         )}
-        <Footer footerCode={scripts?.footerCode} />
+        <Footer footerCode={scripts?.footerCode} footer={footerData} />
       </main>
     </>
   );

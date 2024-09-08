@@ -28,10 +28,11 @@ export interface TResponse {
   contact: Contact;
   seoData: TSEOData[];
   scripts: Script;
+  footer: { footer: string };
 }
 
 export function generateStaticParams() {
-  const path = getCleanPath(seoData);  
+  const path = getCleanPath(seoData);
   return path;
 }
 

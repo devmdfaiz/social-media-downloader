@@ -6,7 +6,7 @@ import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export default async function RootLayout({
   children,

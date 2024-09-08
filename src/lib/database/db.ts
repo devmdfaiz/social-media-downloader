@@ -465,6 +465,8 @@ export const scripts: Script = {
   },
 };
 
+export const footer: string = "© 2024 Downloady. All rights reserved.";
+
 export const contact: Contact = {
   phone: "+91 1234567890",
   email: "contact@test.com",

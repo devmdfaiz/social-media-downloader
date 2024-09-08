@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/collapsible";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
+import LogoWrapper, { HeaderLogo } from "../globle/logo-wrapper";
 
 const Header = ({ headerCode }: { headerCode: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,9 +35,9 @@ const Header = ({ headerCode }: { headerCode: string }) => {
         )}
 
         <div>
-          <h2 className="font-extrabold text-2xl text-primary select-none">
-            Downloady.
-          </h2>
+          <LogoWrapper>
+            <HeaderLogo />
+          </LogoWrapper>
         </div>
         <div className="w-fit h-fit">
           <NavigationDesktop />
@@ -62,18 +63,21 @@ const Header = ({ headerCode }: { headerCode: string }) => {
         </div>
 
         <div>
-          <h2 className="font-extrabold text-2xl text-primary select-none">
-            Downloady.
-          </h2>
+          <LogoWrapper>
+            <HeaderLogo />
+          </LogoWrapper>
         </div>
       </header>
 
       <Sheet onOpenChange={setIsMenuOpen} open={isMenuOpen}>
         <SheetContent side="left">
           <SheetHeader>
-            <SheetTitle className="font-extrabold text-2xl text-primary select-none text-start mb-3">
+            {/* <SheetTitle className="font-extrabold text-2xl text-primary select-none text-start mb-3">
               Downloady.
-            </SheetTitle>
+            </SheetTitle> */}
+            <LogoWrapper>
+              <HeaderLogo />
+            </LogoWrapper>
           </SheetHeader>
           {/* code here */}
           {links.map((link, i) => {
@@ -120,7 +124,7 @@ const Header = ({ headerCode }: { headerCode: string }) => {
                             className="px-3 py-3 text-lg hover:bg-accent space-y-2 block tracking-wider"
                             asChild
                           >
-                            <Link
+                            <a
                               onClick={() =>
                                 setIsCollapsibleOpen((prev) => {
                                   return { index: -1, status: false };
@@ -129,7 +133,7 @@ const Header = ({ headerCode }: { headerCode: string }) => {
                               href={path.path}
                             >
                               {path.title}
-                            </Link>
+                            </a>
                           </CollapsibleContent>
                         );
                       })}

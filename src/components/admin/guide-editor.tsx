@@ -82,7 +82,7 @@ const GuideEditor = ({guides}: {guides: TGuide[]}) => {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-            <div className="flex justify-between items-center gap-3 flex-wrap md:flex-nowrap">
+            <div className="form-wrapper flex justify-center md:justify-between items-center gap-3 flex-wrap md:flex-nowrap">
               {form.watch("guides").map((_, index) => (
                 <div
                   key={index}
