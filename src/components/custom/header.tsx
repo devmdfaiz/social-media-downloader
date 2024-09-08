@@ -29,11 +29,6 @@ const Header = ({ headerCode }: { headerCode: string }) => {
   return (
     <>
       <header className="px-7 py-2  items-center justify-start gap-6 border-b border-primary/70 hidden sm:flex">
-        {/* ad script */}
-        {headerCode && (
-          <div dangerouslySetInnerHTML={{ __html: headerCode }}></div>
-        )}
-
         <div>
           <LogoWrapper>
             <HeaderLogo />
@@ -42,18 +37,15 @@ const Header = ({ headerCode }: { headerCode: string }) => {
         <div className="w-fit h-fit">
           <NavigationDesktop />
         </div>
+
+        {/* ad script */}
+        {headerCode && (
+          <div dangerouslySetInnerHTML={{ __html: headerCode }}></div>
+        )}
       </header>
 
+      {/* mobile header */}
       <header className="px-7 py-2 flex items-center gap-6 border-b border-primary/70 sm:hidden">
-        {/* ad script */}
-        <div className="w-full h-fit flex items-center justify-center">
-          <div className="above-form-add w-[468px] h-[60px] hidden sm:block">
-            {headerCode && (
-              <div dangerouslySetInnerHTML={{ __html: headerCode }}></div>
-            )}
-          </div>
-        </div>
-
         <div
           onClick={() => {
             setIsMenuOpen(true);
@@ -67,6 +59,11 @@ const Header = ({ headerCode }: { headerCode: string }) => {
             <HeaderLogo />
           </LogoWrapper>
         </div>
+
+        {/* ad script */}
+        {headerCode && (
+          <div dangerouslySetInnerHTML={{ __html: headerCode }}></div>
+        )}
       </header>
 
       <Sheet onOpenChange={setIsMenuOpen} open={isMenuOpen}>
