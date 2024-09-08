@@ -31,9 +31,7 @@ export interface TResponse {
 }
 
 export function generateStaticParams() {
-  const path = getCleanPath(seoData);
-  console.log("client string: ", path);
-  
+  const path = getCleanPath(seoData);  
   return path;
 }
 
