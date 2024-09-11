@@ -89,6 +89,7 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
   } catch (error: any) {
+    console.error("Error in verifying key: ", error)
     // Handle Axios errors
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<{ message?: string }>;

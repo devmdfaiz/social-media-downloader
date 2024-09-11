@@ -14,10 +14,8 @@ export async function middleware(req: NextRequest) {
 
   const secret = new TextEncoder().encode(evarConts.jwtSec);
 
-  if (pathname === "*") {
-    // const data = await getProductInfo();
-    console.log("activation path");
-    
+  if (pathname === "/") {
+    return NextResponse.rewrite(new URL("/social-media-downloader", url));
   }
 
   if (pathname.startsWith("/admin")) {
@@ -31,10 +29,6 @@ export async function middleware(req: NextRequest) {
       console.error("JWT verification failed:", error);
       return NextResponse.redirect(new URL("/login", url));
     }
-  }
-
-  if (pathname === "/") {
-    return NextResponse.rewrite(new URL("/social-media-downloader", url));
   }
 }
 

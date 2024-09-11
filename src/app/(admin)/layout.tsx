@@ -1,4 +1,6 @@
 import AdminHeader from "@/components/admin/admin-header";
+import { ProductInfoError } from "@/components/globle/info";
+import { getProductInfo } from "@/lib/fetch";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,11 +10,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let res;
+
+  try {
+    res = await getProductInfo();
+  } catch (error) {
+    console.error("Error in client main layout: ", error);
+    res = "error";
+  }
+
+  const productInfo = res["product-info"];
+
+  if (!productInfo) {
+    return <ProductInfoError />;
+  }
+
   return (
     <main className="overflow-hidden">
       <AdminHeader />

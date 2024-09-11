@@ -97,7 +97,7 @@ export const GenerateKey = () => {
       <CardHeader>
         <CardTitle>Generate key</CardTitle>
         <CardDescription>
-          Enter your "Phone number" & "Email" to generate activation key
+          {`Enter your "Phone number" & "Email" to generate activation key`}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
@@ -191,7 +191,7 @@ export const VerifyKey = () => {
       <CardHeader>
         <CardTitle>Verify activation key</CardTitle>
         <CardDescription>
-          Enter your "Activation key" and verify
+          {`Enter your "Activation key" and verify`}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
