@@ -1,37 +1,29 @@
-"use client";
-import { useEffect, useState } from "react";
-
-export const AdComponent_468_60 = ({
+export default function BodyAdScript({
   longBannerAd_468_60,
-}: {
-  longBannerAd_468_60: string;
-}) => {
-  const [script, setScript] = useState<any>(null);
-
-  useEffect(() => {
-    setScript(longBannerAd_468_60);
-    // Ad code execution logic here
-    if (script) {
-      const adDiv = document.getElementById("long-banner-ad")!;
-      adDiv.innerHTML = script;
-    }
-  }, [script]);
-
-  return <div id="long-banner-ad"></div>;
-};
-
-export const AdComponent_300_250 = ({
   bannerAd_300_250,
 }: {
   bannerAd_300_250: string;
-}) => {
-  useEffect(() => {
-    // Ad code execution logic here
-    if (bannerAd_300_250) {
-      const adDiv = document.getElementById("banner-ad")!;
-      adDiv.innerHTML = bannerAd_300_250;
-    }
-  }, [bannerAd_300_250]);
+  longBannerAd_468_60: string;
+}) {
+  return (
+    <div className="w-full h-fit flex items-center justify-center">
+      <div className="above-form-add w-[468px] h-[60px] hidden sm:block">
+        {longBannerAd_468_60 && (
+          <div dangerouslySetInnerHTML={{ __html: longBannerAd_468_60 }}></div>
+        )}
+      </div>
 
-  return <div id="banner-ad"></div>;
+      <div className="above-form-add w-[300px] h-[250px] sm:hidden">
+        {bannerAd_300_250 && (
+          <div dangerouslySetInnerHTML={{ __html: bannerAd_300_250 }}></div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export const NonBodyAsScript = ({ script }: { script: string }) => {
+  return (
+    <>{script && <div dangerouslySetInnerHTML={{ __html: script }}></div>}</>
+  );
 };

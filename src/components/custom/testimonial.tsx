@@ -1,8 +1,15 @@
 import React from "react";
 import { TypographyH2, TypographyH4, TypographyP } from "./typography";
+import { TTestimonials } from "@/lib/database/db";
+import BodyAdScript from "../globle/ad";
 import {
-  TTestimonials,
-} from "@/lib/database/db";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const Testimonial = ({
   testimonials,
@@ -14,45 +21,38 @@ const Testimonial = ({
   bannerAd_300_250: string;
 }) => {
   return (
-    <div className="my-11">
-      <TypographyH2 className="text-3xl font-bold text-center my-8 text-primary">
-        Testimonials
-      </TypographyH2>
+    <>
+      <div className="my-11">
+        <TypographyH2 className="text-3xl font-bold text-center my-8 text-primary">
+          Testimonials
+        </TypographyH2>
 
-      {/* ad script */}
-      <div className="w-full h-fit flex items-center justify-center mb-8">
-        <div className="above-form-add w-[468px] h-[60px] hidden sm:block">
-          {longBannerAd_468_60 && (
-            <div
-              dangerouslySetInnerHTML={{ __html: longBannerAd_468_60 }}
-            ></div>
-          )}
-        </div>
+        {/* ad script */}
+        <BodyAdScript
+          bannerAd_300_250={bannerAd_300_250}
+          longBannerAd_468_60={longBannerAd_468_60}
+        />
 
-        <div className="above-form-add w-[300px] h-[250px] sm:hidden">
-          {bannerAd_300_250 && (
-            <div dangerouslySetInnerHTML={{ __html: bannerAd_300_250 }}></div>
-          )}
+        <div className="flex justify-between items-start gap-5 flex-wrap md:flex-nowrap">
+          {testimonials.length > 0 &&
+            testimonials.map((testimonial, i) => {
+              return (
+                <Card key={i}>
+                  <CardHeader>
+                    <div className="bg-primary/30 text-primary w-11 h-11 rounded-full flex items-center justify-center mb-4">
+                      <span className="text-2xl font-bold select-none">
+                        {testimonial?.name.slice(0, 1)}
+                      </span>
+                    </div>
+                    <CardTitle>{testimonial?.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>{testimonial?.cont}</CardContent>
+                </Card>
+              );
+            })}
         </div>
       </div>
-
-      <div className="flex justify-between items-start gap-5 flex-wrap md:flex-nowrap">
-        {testimonials.length > 0 &&
-          testimonials.map((testimonial, i) => {
-            return (
-              <div key={i} className="w-full h-fit">
-                <div className="border border-primary/70 flex items-start justify-center px-5 py-6 flex-col h-full">
-                  <TypographyH4>{testimonial?.name}</TypographyH4>
-
-                  <TypographyP className="scroll-m-0">
-                    {testimonial?.cont}
-                  </TypographyP>
-                </div>
-              </div>
-            );
-          })}
-      </div>
-    </div>
+    </>
   );
 };
 

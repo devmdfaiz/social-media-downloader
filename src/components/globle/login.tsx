@@ -61,7 +61,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="border border-primary p-5">
+    <div className="p-5">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -92,7 +92,7 @@ export default function LoginForm() {
             )}
           />
           {!isLoading ? (
-            <Button type="submit">Submit</Button>
+            <Button type="submit">Proceed to Admin</Button>
           ) : (
             <Loader className="animate-spin text-primary" />
           )}

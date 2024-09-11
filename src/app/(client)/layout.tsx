@@ -3,6 +3,7 @@ import Footer from "@/components/custom/footer";
 import { AlertDestructive } from "@/components/globle/error";
 import { getPageAllCachedData } from "@/lib/cache-data";
 import { TResponse } from "./[path]/page";
+import { ProductInfoError } from "@/components/globle/info";
 
 export default async function RootLayout({
   children,
@@ -18,9 +19,13 @@ export default async function RootLayout({
     res = "error";
   }
 
-  const { scripts, footer }: TResponse = res;
+  const { scripts, footer, productInfo }: TResponse = res;
 
   const footerData = footer?.footer;
+
+  if(productInfo === "error"){
+    return <ProductInfoError />
+  }
 
   return (
     <>

@@ -72,3 +72,15 @@ export const getFooterData = async () => {
 
   throw new Error("An unexpected error has occurred. Please try again later.");
 };
+
+export const getProductInfo = async () => {
+  const res = await axios.get(`${evarConts.cloudflareKvUrl}/api/product-info`);
+
+  const { data, status } = res;
+
+  if (status === 200) {
+    return data;
+  }
+
+  throw new Error("An unexpected error has occurred. Please try again later.");
+};

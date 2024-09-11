@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import * as jose from "jose";
 import { evarConts } from "./lib/constants/evarConts";
+import { getProductInfo } from "./lib/fetch";
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(req: NextRequest) {
@@ -12,6 +13,12 @@ export async function middleware(req: NextRequest) {
   const token = tokenRes?.value;
 
   const secret = new TextEncoder().encode(evarConts.jwtSec);
+
+  if (pathname === "*") {
+    // const data = await getProductInfo();
+    console.log("activation path");
+    
+  }
 
   if (pathname.startsWith("/admin")) {
     if (!token) {

@@ -97,7 +97,7 @@ export const NavigationDesktop = () => {
         {links.map((link, i) => {
           return (
             <NavigationMenuItem key={i}>
-              <NavigationMenuTrigger>{link.social}</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="bg-card">{link.social}</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                   {link.paths.map((component, i) => (

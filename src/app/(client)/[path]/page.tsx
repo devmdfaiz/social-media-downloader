@@ -29,6 +29,7 @@ export interface TResponse {
   seoData: TSEOData[];
   scripts: Script;
   footer: { footer: string };
+  productInfo: { activationKey: string; data: string } | string;
 }
 
 export function generateStaticParams() {

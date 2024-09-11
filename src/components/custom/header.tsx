@@ -15,9 +15,17 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 import LogoWrapper, { HeaderLogo } from "../globle/logo-wrapper";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { NonBodyAsScript } from "../globle/ad";
 
 const Header = ({ headerCode }: { headerCode: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,43 +36,45 @@ const Header = ({ headerCode }: { headerCode: string }) => {
 
   return (
     <>
-      <header className="px-7 py-2  items-center justify-start gap-6 border-b border-primary/70 hidden sm:flex">
-        <div>
-          <LogoWrapper>
-            <HeaderLogo />
-          </LogoWrapper>
-        </div>
-        <div className="w-fit h-fit">
-          <NavigationDesktop />
-        </div>
+      <Card className="p-0 m-4">
+        <CardContent className="p-0">
+          <header className="px-7 py-2  items-center justify-start gap-6 hidden sm:flex">
+            <div>
+              <LogoWrapper>
+                <HeaderLogo />
+              </LogoWrapper>
+            </div>
+            <div className="w-fit h-fit">
+              <NavigationDesktop />
+            </div>
 
-        {/* ad script */}
-        {headerCode && (
-          <div dangerouslySetInnerHTML={{ __html: headerCode }}></div>
-        )}
-      </header>
+            {/* ad script */}
+            <NonBodyAsScript script={headerCode} />
+          </header>
 
-      {/* mobile header */}
-      <header className="px-7 py-2 flex items-center gap-6 border-b border-primary/70 sm:hidden">
-        <div
-          onClick={() => {
-            setIsMenuOpen(true);
-          }}
-        >
-          <HamburgerMenuIcon className="w-5 h-5" />
-        </div>
+          {/* mobile header */}
+          <header className="px-7 py-2 flex items-center gap-6 sm:hidden">
+            <div
+              onClick={() => {
+                setIsMenuOpen(true);
+              }}
+            >
+              <HamburgerMenuIcon className="w-5 h-5" />
+            </div>
 
-        <div>
-          <LogoWrapper>
-            <HeaderLogo />
-          </LogoWrapper>
-        </div>
+            <div>
+              <LogoWrapper>
+                <HeaderLogo />
+              </LogoWrapper>
+            </div>
 
-        {/* ad script */}
-        {headerCode && (
-          <div dangerouslySetInnerHTML={{ __html: headerCode }}></div>
-        )}
-      </header>
+            {/* ad script */}
+            {headerCode && (
+              <div dangerouslySetInnerHTML={{ __html: headerCode }}></div>
+            )}
+          </header>
+        </CardContent>
+      </Card>
 
       <Sheet onOpenChange={setIsMenuOpen} open={isMenuOpen}>
         <SheetContent side="left">
