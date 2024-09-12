@@ -1,3 +1,4 @@
+import { MY_ACTIVATION_SERVER } from "@/lib/constants/constants";
 import { evarConts } from "@/lib/constants/evarConts";
 import axios, { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
@@ -34,7 +35,7 @@ export async function POST(req: NextRequest) {
 
     // Step 1: Post data to the key generation server
     const myServerResponse = await axios.post(
-      `${myServerUrl}api/generate-key`,
+      `${MY_ACTIVATION_SERVER}api/generate-key`,
       {
         email,
         phone,

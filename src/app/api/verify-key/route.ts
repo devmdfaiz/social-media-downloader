@@ -1,8 +1,7 @@
+import { MY_ACTIVATION_SERVER } from "@/lib/constants/constants";
 import { evarConts } from "@/lib/constants/evarConts";
 import axios, { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
-
-const myServerUrl = "http://localhost:3000/";
 
 export async function POST(req: NextRequest) {
   try {
@@ -24,10 +23,13 @@ export async function POST(req: NextRequest) {
     const domain = req.nextUrl.host;
 
     //Step 1: Send a POST request to verify the activation key
-    const myServerResponse = await axios.post(`${myServerUrl}api/verify-key`, {
-      activationKey,
-      domain,
-    });
+    const myServerResponse = await axios.post(
+      `${MY_ACTIVATION_SERVER}api/verify-key`,
+      {
+        activationKey,
+        domain,
+      }
+    );
 
     const { data: axiosMyServerData, status: axiosMyServerStatus } =
       myServerResponse;
@@ -89,7 +91,7 @@ export async function POST(req: NextRequest) {
       { status: 200 }
     );
   } catch (error: any) {
-    console.error("Error in verifying key: ", error)
+    console.error("Error in verifying key: ", error);
     // Handle Axios errors
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError<{ message?: string }>;
