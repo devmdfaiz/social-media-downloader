@@ -1,8 +1,15 @@
-import { TypographyH1, TypographyP } from "@/components/custom/typography";
+import { TypographyP } from "@/components/custom/typography";
 import { AlertDestructive } from "@/components/globle/error";
 import { getContactPageCachedData, getSeoCachedData } from "@/lib/cache-data";
 import { Contact, seoData, TSEOData } from "@/lib/database/db";
 import { Metadata } from "next";
+
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export async function generateMetadata(): Promise<Metadata> {
   let res;
@@ -38,22 +45,25 @@ const ContactUs = async () => {
 
   if (res === "error") {
     return <AlertDestructive message={res} />;
-  } 
+  }
 
   const contact: Contact = res["contact-cont"];
 
   return (
-    <div className="w-full h-full">
-      <TypographyH1 className="my-8">Contact us</TypographyH1>
-
-      <div className="px-8 py-8 border border-primary">
+    <Card>
+      <CardHeader>
+        <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight">
+          Contact us
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
         <TypographyP>
           <b>Phone:</b> {contact.phone}
           <br />
           <b>Email:</b> {contact.email}
         </TypographyP>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

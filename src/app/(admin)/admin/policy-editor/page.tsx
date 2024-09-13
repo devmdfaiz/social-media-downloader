@@ -15,7 +15,7 @@ const PolicyEditorPage = async () => {
   } catch (error) {
     console.error("Error in Policy editor page: ", error);
     res = "error";
-  }
+  }  
 
   if (res === "error") {
     return <AlertDestructive message={res} />;

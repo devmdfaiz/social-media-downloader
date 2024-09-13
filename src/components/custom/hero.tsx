@@ -22,7 +22,7 @@ const Hero = ({
   bannerAd_300_250: string;
 }) => {
   return (
-    <Card className="w-full px-3 py-11 my-11">
+    <Card className="w-full py-11 my-11">
       <CardHeader>
         <CardTitle className="text-primary text-center text-2xl lg:text-4xl font-bold">
           {content?.title}

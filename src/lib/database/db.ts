@@ -105,12 +105,12 @@ export const heroContent: THeroContent[] = [
     description:
       "Download YouTube videos in high quality with our free YouTube Videos downloader. Save videos in multiple formats.",
   },
-  {
-    page: "/youtube-playlists-download",
-    title: "YouTube Playlists Downloader - Save YouTube Playlists",
-    description:
-      "Download entire YouTube playlists in one go with our YouTube Playlists downloader. Save your favorite playlists offline.",
-  },
+  // {
+  //   page: "/youtube-playlists-download",
+  //   title: "YouTube Playlists Downloader - Save YouTube Playlists",
+  //   description:
+  //     "Download entire YouTube playlists in one go with our YouTube Playlists downloader. Save your favorite playlists offline.",
+  // },
   {
     page: "/social-media-downloader",
     title: "Social Media Downloader - Download Videos from Any Social Platform",

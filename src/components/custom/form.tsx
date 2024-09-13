@@ -80,7 +80,7 @@ const DownloaderForm = () => {
               <FormItem className="">
                 <FormControl>
                   <Input
-                    className="w-[180px] sm:w-[300px] md:w-[350px] lg:w-[450px]"
+                    className="w-[140px] sm:w-[300px] md:w-[350px] lg:w-[450px]"
                     placeholder="Past your link here"
                     {...field}
                   />
@@ -101,7 +101,7 @@ const DownloaderForm = () => {
               >
                 <ClipboardIcon />
               </Button>
-              <Button type="submit">Get Links</Button>
+              <Button type="submit">Get</Button>
             </>
           ) : (
             <Loader className="animate-spin text-primary" />

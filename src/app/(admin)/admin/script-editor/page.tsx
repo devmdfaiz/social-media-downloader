@@ -17,6 +17,8 @@ const PolicyEditorPage = async () => {
     res = "error";
   }
 
+  console.log("script page data: ", res)
+
   if (res === "error") {
     return <AlertDestructive message={res} />;
   }

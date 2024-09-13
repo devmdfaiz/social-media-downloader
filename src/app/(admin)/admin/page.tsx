@@ -38,17 +38,15 @@ const AdminPage = async () => {
     footer
   }: TResponse = res;
 
-  const footerData = footer?.footer
-
   return (
     <div>
       <HeroEditor heroContent={heroContent} />
       <GuideEditor guides={guides} />
-      <ContentEditor htmlContent={htmlContent.content} />
+      <ContentEditor htmlContent={htmlContent?.content} />
       <TestimonialEditor testimonials={testimonials} />
       <FAQEditor faqs={faqs} />
       <ContactEditor contact={contact} />
-      <FooterEditor footer={footerData} />
+      <FooterEditor footer={footer?.footer} />
     </div>
   );
 };

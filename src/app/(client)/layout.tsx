@@ -36,7 +36,7 @@ export default async function RootLayout({
         ) : (
           <div className="w-screen min-h-screen container">{children}</div>
         )}
-        <Footer footerCode={scripts?.footerCode} footer={footer} />
+        <Footer footerCode={scripts?.footerCode} footer={footer?.footer} />
       </main>
     </>
   );

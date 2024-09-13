@@ -156,8 +156,8 @@ export const GenerateKey = () => {
         ) : (
           <TypographyMuted>
             We have sent an activation key to your email. Please check your
-            inbox. If you don't see it there, make sure to also check your spam
-            folder.
+            inbox. If you {`don't`} see it there, make sure to also check your
+            spam folder.
           </TypographyMuted>
         )}
       </CardContent>
@@ -194,10 +194,10 @@ export const VerifyKey = () => {
           showToast(data.message, "", "Close", () => {});
 
           seedAllData({
-            content: htmlContent,
+            content: { content: htmlContent },
             contactData: contact,
             faqsData: faqs,
-            footerData: footer,
+            footerData: { footer },
             guideData: guides,
             heroData: heroContent,
             policyData: policies,

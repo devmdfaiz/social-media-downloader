@@ -41,25 +41,27 @@ export const getPageAllData = async () => {
 export const getContactPageData = async () => {
   const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/contact`);
 
-  return res?.data;
+  return res;
 };
 
 export const getPolicyPageData = async () => {
   const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/policy`);
 
-  return res?.data;
+  return res;
 };
 
 export const getSEOData = async () => {
   const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/seo`);
 
-  return res?.data;
+  console.log("seo function data: ", res)
+
+  return res;
 };
 
 export const getScriptData = async () => {
   const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/scripts`);
 
-  return res?.data;
+  return res;
 };
 
 export const getFooterData = async () => {
@@ -71,5 +73,5 @@ export const getFooterData = async () => {
 export const getProductInfo = async () => {
   const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/product-info`);
 
-  return res?.data;
+  return res;
 };
