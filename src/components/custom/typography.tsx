@@ -126,7 +126,7 @@ export function TypographyMuted({
   className,
 }: {
   children: ReactNode;
-  className: string;
+  className?: string;
 }) {
   return (
     <p className={cn("text-sm text-muted-foreground", className)}>{children}</p>

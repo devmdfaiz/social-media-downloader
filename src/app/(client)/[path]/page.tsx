@@ -28,7 +28,7 @@ export interface TResponse {
   contact: Contact;
   seoData: TSEOData[];
   scripts: Script;
-  footer: { footer: string };
+  footer: string;
   productInfo: { activationKey: string; data: string } | string;
 }
 

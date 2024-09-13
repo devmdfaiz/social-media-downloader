@@ -6,8 +6,6 @@ const fetchData = async (url: string) => {
   try {
     const response = await axios.get(url);
     const { data, status } = response;
-    console.log("fetch data: ", data);
-    
 
     // Success Response
     if (status === 200) {
@@ -35,29 +33,43 @@ const fetchData = async (url: string) => {
 
 // Function Wrappers to fetch data from specific APIs
 export const getPageAllData = async () => {
-  return fetchData(`${evarConts.cloudflareKvUrl}/api`);
+  const res = await fetchData(`${evarConts.cloudflareKvUrl}/api`);
+  
+  return res?.data;
 };
 
 export const getContactPageData = async () => {
-  return fetchData(`${evarConts.cloudflareKvUrl}/api/contact`);
+  const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/contact`);
+
+  return res?.data;
 };
 
 export const getPolicyPageData = async () => {
-  return fetchData(`${evarConts.cloudflareKvUrl}/api/policy`);
+  const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/policy`);
+
+  return res?.data;
 };
 
 export const getSEOData = async () => {
-  return fetchData(`${evarConts.cloudflareKvUrl}/api/seo`);
+  const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/seo`);
+
+  return res?.data;
 };
 
 export const getScriptData = async () => {
-  return fetchData(`${evarConts.cloudflareKvUrl}/api/scripts`);
+  const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/scripts`);
+
+  return res?.data;
 };
 
 export const getFooterData = async () => {
-  return fetchData(`${evarConts.cloudflareKvUrl}/api/footer`);
+  const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/footer`);
+
+  return res?.data;
 };
 
 export const getProductInfo = async () => {
-  return fetchData(`${evarConts.cloudflareKvUrl}/api/product-info`);
+  const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/product-info`);
+
+  return res?.data;
 };

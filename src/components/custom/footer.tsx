@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TypographyP } from "./typography";
+import { NonBodyAsScript } from "../globle/ad";
 
 const footerLinks = [
   {
@@ -16,12 +17,16 @@ const footerLinks = [
   },
 ];
 
-const Footer = ({ footerCode, footer }: { footerCode: string, footer: string }) => {
+const Footer = ({
+  footerCode,
+  footer,
+}: {
+  footerCode: string;
+  footer: string;
+}) => {
   return (
     <footer className="p-4">
-      {footerCode && (
-        <div dangerouslySetInnerHTML={{ __html: footerCode }}></div>
-      )}
+      <NonBodyAsScript script={footerCode} />
       <div className="flex justify-center items-center gap-5 flex-wrap">
         <TypographyP>{footer}</TypographyP>
         <ul className="flex justify-center items-center gap-3">

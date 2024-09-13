@@ -42,6 +42,7 @@ import {
   seoData,
   testimonials,
 } from "@/lib/database/db";
+import { TypographyMuted } from "../custom/typography";
 
 const ActivationForm = () => {
   return (
@@ -64,6 +65,7 @@ const ActivationForm = () => {
 
 export const GenerateKey = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
 
   const formSchema = z.object({
     phone: z.string({ required_error: "Phone number is required" }).trim(),
@@ -89,6 +91,7 @@ export const GenerateKey = () => {
 
         if (status === 200) {
           setIsLoading(false);
+          setIsLoadingComplete(true);
           showToast(data.message, "", "Close", () => {});
         }
       })
@@ -113,42 +116,50 @@ export const GenerateKey = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone number</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter your phone number" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        {!isLoadingComplete ? (
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your phone number" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {!isLoading ? (
+                <Button type="submit">Generate key</Button>
+              ) : (
+                <Loader className="animate-spin text-primary" />
               )}
-            />
-            {!isLoading ? (
-              <Button type="submit">Generate key</Button>
-            ) : (
-              <Loader className="animate-spin text-primary" />
-            )}
-          </form>
-        </Form>
+            </form>
+          </Form>
+        ) : (
+          <TypographyMuted>
+            We have sent an activation key to your email. Please check your
+            inbox. If you don't see it there, make sure to also check your spam
+            folder.
+          </TypographyMuted>
+        )}
       </CardContent>
     </Card>
   );

@@ -4,6 +4,7 @@ import { AlertDestructive } from "@/components/globle/error";
 import { getPageAllCachedData } from "@/lib/cache-data";
 import { TResponse } from "./[path]/page";
 import { ProductInfoError } from "@/components/globle/info";
+import { NonBodyAsScript } from "@/components/globle/ad";
 
 export default async function RootLayout({
   children,
@@ -21,20 +22,13 @@ export default async function RootLayout({
 
   const { scripts, footer, productInfo }: TResponse = res;
 
-  const footerData = footer?.footer;
-
-  if(productInfo === "error"){
-    return <ProductInfoError />
+  if (productInfo === "error") {
+    return <ProductInfoError />;
   }
 
   return (
     <>
-      {scripts?.bodyCode && (
-        <div
-          className="body-script"
-          dangerouslySetInnerHTML={{ __html: scripts?.bodyCode }}
-        ></div>
-      )}
+      <NonBodyAsScript script={scripts?.bodyCode} />
       <main className="overflow-hidden">
         <Header headerCode={scripts?.headerCode} />
         {res === "error" ? (
@@ -42,7 +36,7 @@ export default async function RootLayout({
         ) : (
           <div className="w-screen min-h-screen container">{children}</div>
         )}
-        <Footer footerCode={scripts?.footerCode} footer={footerData} />
+        <Footer footerCode={scripts?.footerCode} footer={footer} />
       </main>
     </>
   );
