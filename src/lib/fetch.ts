@@ -1,86 +1,63 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { evarConts } from "./constants/evarConts";
 
-export const getPageAllData = async () => {
-  const res = await axios.get(`${evarConts.cloudflareKvUrl}/api`);
+// Centralized function to handle Axios requests
+const fetchData = async (url: string) => {
+  try {
+    const response = await axios.get(url);
+    const { data, status } = response;
+    console.log("fetch data: ", data);
+    
 
-  const { data, status } = res;
+    // Success Response
+    if (status === 200) {
+      return data;
+    }
 
-  if (status === 200) {
-    return data.data;
+    // In case of other status codes
+    throw new Error(`Unexpected status code: ${status}`);
+  } catch (error: any) {
+    // Error Handling
+    if (axios.isAxiosError(error)) {
+      const axiosError = error as AxiosError<{ message?: string }>;
+      const errorMessage =
+        axiosError.response?.data?.message ||
+        axiosError.message ||
+        "An unknown error occurred.";
+      console.error(`Error fetching data from ${url}:`, errorMessage);
+      throw new Error(errorMessage);
+    }
+
+    console.error(`Non-Axios error:`, error);
+    throw new Error("An error occurred while fetching data. Please try again.");
   }
+};
 
-  throw new Error("An unexpected error has occurred. Please try again later.");
+// Function Wrappers to fetch data from specific APIs
+export const getPageAllData = async () => {
+  return fetchData(`${evarConts.cloudflareKvUrl}/api`);
 };
 
 export const getContactPageData = async () => {
-  const res = await axios.get(`${evarConts.cloudflareKvUrl}/api/contact`);
-
-  const { data, status } = res;
-
-  if (status === 200) {
-    return data;
-  }
-
-  throw new Error("An unexpected error has occurred. Please try again later.");
+  return fetchData(`${evarConts.cloudflareKvUrl}/api/contact`);
 };
 
 export const getPolicyPageData = async () => {
-  const res = await axios.get(`${evarConts.cloudflareKvUrl}/api/policy`);
-
-  const { data, status } = res;
-
-  if (status === 200) {
-    return data;
-  }
-
-  throw new Error("An unexpected error has occurred. Please try again later.");
+  return fetchData(`${evarConts.cloudflareKvUrl}/api/policy`);
 };
 
 export const getSEOData = async () => {
-  const res = await axios.get(`${evarConts.cloudflareKvUrl}/api/seo`);
-
-  const { data, status } = res;
-
-  if (status === 200) {
-    return data;
-  }
-
-  throw new Error("An unexpected error has occurred. Please try again later.");
+  return fetchData(`${evarConts.cloudflareKvUrl}/api/seo`);
 };
 
 export const getScriptData = async () => {
-  const res = await axios.get(`${evarConts.cloudflareKvUrl}/api/scripts`);
-
-  const { data, status } = res;
-
-  if (status === 200) {
-    return data;
-  }
-
-  throw new Error("An unexpected error has occurred. Please try again later.");
+  return fetchData(`${evarConts.cloudflareKvUrl}/api/scripts`);
 };
 
 export const getFooterData = async () => {
-  const res = await axios.get(`${evarConts.cloudflareKvUrl}/api/footer`);
-
-  const { data, status } = res;
-
-  if (status === 200) {
-    return data;
-  }
-
-  throw new Error("An unexpected error has occurred. Please try again later.");
+  return fetchData(`${evarConts.cloudflareKvUrl}/api/footer`);
 };
 
 export const getProductInfo = async () => {
-  const res = await axios.get(`${evarConts.cloudflareKvUrl}/api/product-info`);
-
-  const { data, status } = res;
-
-  if (status === 200) {
-    return data;
-  }
-
-  throw new Error("An unexpected error has occurred. Please try again later.");
+  return fetchData(`${evarConts.cloudflareKvUrl}/api/product-info`);
 };

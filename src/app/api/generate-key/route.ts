@@ -1,10 +1,7 @@
 import { MY_ACTIVATION_SERVER } from "@/lib/constants/constants";
-import { evarConts } from "@/lib/constants/evarConts";
 import axios, { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuid } from "uuid";
-
-const myServerUrl = "http://localhost:3000/";
 
 interface AxiosErrorResponse {
   message?: string; // The message field is optional

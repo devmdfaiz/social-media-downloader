@@ -29,6 +29,19 @@ import { showToast } from "@/lib/utils";
 import { clientError } from "@/lib/error/error-extracter";
 import { useState } from "react";
 import { Loader } from "lucide-react";
+import { seedAllData } from "@/lib/action";
+import {
+  contact,
+  faqs,
+  footer,
+  guides,
+  heroContent,
+  htmlContent,
+  policies,
+  scripts,
+  seoData,
+  testimonials,
+} from "@/lib/database/db";
 
 const ActivationForm = () => {
   return (
@@ -167,10 +180,26 @@ export const VerifyKey = () => {
         const { status, data } = res;
 
         if (status === 200) {
-          setIsLoading(false);
           showToast(data.message, "", "Close", () => {});
 
-          window.location.href = "/"
+          seedAllData({
+            content: htmlContent,
+            contactData: contact,
+            faqsData: faqs,
+            footerData: footer,
+            guideData: guides,
+            heroData: heroContent,
+            policyData: policies,
+            scriptsData: scripts,
+            seoData: seoData,
+            testimonialsData: testimonials,
+          }).then((res) => {
+            setIsLoading(false);
+            if (res?.status) {
+              showToast(res.message, "", "Close", () => {});
+              window.location.href = "/";
+            }
+          });
         }
       })
       .catch((error) => {
