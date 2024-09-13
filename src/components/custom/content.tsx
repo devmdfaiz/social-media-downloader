@@ -33,8 +33,8 @@ const Content = ({
         />
 
         {htmlContent && (
-          <Card>
-            <CardContent className="mt-5">
+          <Card className="p-0">
+            <CardContent className="mt-5 p-0">
               <div
                 className="tiptap"
                 dangerouslySetInnerHTML={{ __html: htmlContent }}

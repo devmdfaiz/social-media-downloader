@@ -80,7 +80,7 @@ const DownloaderForm = () => {
               <FormItem className="">
                 <FormControl>
                   <Input
-                    className="w-[140px] sm:w-[300px] md:w-[350px] lg:w-[450px]"
+                    className="w-[170px] sm:w-[300px] md:w-[350px] lg:w-[450px]"
                     placeholder="Past your link here"
                     {...field}
                   />

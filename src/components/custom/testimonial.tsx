@@ -37,7 +37,7 @@ const Testimonial = ({
           {testimonials.length > 0 &&
             testimonials.map((testimonial, i) => {
               return (
-                <Card key={i}>
+                <Card key={i} className="grow">
                   <CardHeader>
                     <div className="bg-primary/30 text-primary w-11 h-11 rounded-full flex items-center justify-center mb-4">
                       <span className="text-2xl font-bold select-none">
