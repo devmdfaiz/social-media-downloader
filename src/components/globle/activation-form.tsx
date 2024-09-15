@@ -48,15 +48,19 @@ const ActivationForm = () => {
   return (
     <div className="flex items-center justify-center h-screen w-full">
       <Tabs defaultValue="generate-key" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="generate-key">Generate key</TabsTrigger>
           <TabsTrigger value="validate-key">Validate key</TabsTrigger>
+          <TabsTrigger value="forget-key">Forget key</TabsTrigger>
         </TabsList>
         <TabsContent value="generate-key">
           <GenerateKey />
         </TabsContent>
         <TabsContent value="validate-key">
           <VerifyKey />
+        </TabsContent>
+        <TabsContent value="forget-key">
+          <ForgetKey />
         </TabsContent>
       </Tabs>
     </div>
@@ -251,6 +255,84 @@ export const VerifyKey = () => {
             />
             {!isLoading ? (
               <Button type="submit">Verify key</Button>
+            ) : (
+              <Loader className="animate-spin text-primary" />
+            )}
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
+  );
+};
+
+export const ForgetKey = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const formSchema = z.object({
+    email: z
+      .string({ required_error: "Email is required" })
+      .email("Please enter a valid email address")
+      .trim(),
+  });
+
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  // 2. Define a submit handler.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    try {
+      const res = await axios.post("/api/forget-key", values);
+      const { status, data } = res;
+
+      if (status === 200) {
+        setIsLoading(false);
+        showToast(data.message, "", "Close", () => {});
+      }
+    } catch (error) {
+      setIsLoading(false);
+      const errorMessage = clientError(error);
+      console.error("Error in sending activation key: ", error);
+      showToast(errorMessage, "", "Close", () => {});
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Forgot Your Activation Key?</CardTitle>
+        <CardDescription>
+          {`Enter your registered email below, and we’ll send you the activation key.`}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email Address</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter your registered email"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {!isLoading ? (
+              <Button type="submit">Send Activation Key</Button>
             ) : (
               <Loader className="animate-spin text-primary" />
             )}
