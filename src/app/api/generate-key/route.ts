@@ -10,14 +10,14 @@ interface AxiosErrorResponse {
 export async function POST(req: NextRequest) {
   try {
     // Parse the incoming request body
-    const { email, phone } = await req.json();
+    const { email, phone, purchaseCode, platform } = await req.json();
 
     // Validate required fields
-    if (!email || !phone) {
+    if (!email || !phone || !purchaseCode || !platform) {
       return NextResponse.json(
         {
           status: false,
-          message: "Email and phone are required.",
+          message: "Email, phone, purchase code and platform are required.",
         },
         { status: 400 }
       );
@@ -39,6 +39,8 @@ export async function POST(req: NextRequest) {
         customerId,
         productId,
         domain,
+        purchaseCode,
+        platform,
       }
     );
 

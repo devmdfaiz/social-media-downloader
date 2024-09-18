@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -43,10 +42,18 @@ import {
   testimonials,
 } from "@/lib/database/db";
 import { TypographyMuted } from "../custom/typography";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import Link from "next/link";
 
 const ActivationForm = () => {
   return (
-    <div className="flex items-center justify-center h-screen w-full">
+    <div className="flex items-start justify-center h-screen w-full pt-12">
       <Tabs defaultValue="generate-key" className="w-[400px]">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="generate-key">Generate key</TabsTrigger>
@@ -73,6 +80,10 @@ export const GenerateKey = () => {
 
   const formSchema = z.object({
     phone: z.string({ required_error: "Phone number is required" }).trim(),
+    purchaseCode: z
+      .string({ required_error: "Purchase code is required" })
+      .trim(),
+    platform: z.string({ required_error: "Platform is required" }).trim(),
     email: z.string({ required_error: "Email is required" }).trim(),
   });
 
@@ -82,12 +93,16 @@ export const GenerateKey = () => {
     defaultValues: {
       email: "",
       phone: "",
+      purchaseCode: "",
+      platform: "",
     },
   });
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
+    console.log("values: ", values);
+
     const res = axios
       .post("/api/generate-key", values)
       .then((res) => {
@@ -116,13 +131,38 @@ export const GenerateKey = () => {
       <CardHeader>
         <CardTitle>Generate key</CardTitle>
         <CardDescription>
-          {`Enter your "Phone number" & "Email" to generate activation key`}
+          {`Enter your all below details to generate activation key`}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
         {!isLoadingComplete ? (
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="platform"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Platform</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a purchase platform" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="code-canyen">Code Canyen</SelectItem>
+                        {/* <SelectItem value="evo-creator">Evo Creator</SelectItem> */}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <FormField
                 control={form.control}
                 name="phone"
@@ -146,6 +186,33 @@ export const GenerateKey = () => {
                     <FormControl>
                       <Input placeholder="Enter your email" {...field} />
                     </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="purchaseCode"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Purchase Code</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your Purchase code"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      How to get code canyen purchase code -{" "}
+                      <Link
+                        target="_blank"
+                        className="hover:border-b-2 text-primary"
+                        href="https://www.youtube.com/watch?v=ye_MKnXnCa0"
+                      >
+                        Click here
+                      </Link>
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

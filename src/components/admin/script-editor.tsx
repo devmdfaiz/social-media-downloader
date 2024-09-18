@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -19,7 +20,7 @@ import { evarConts } from "@/lib/constants/evarConts";
 import { showToast } from "@/lib/utils";
 import { useState } from "react";
 import { Loader } from "lucide-react";
-import {  Script, scripts } from "@/lib/database/db";
+import { Script, scripts } from "@/lib/database/db";
 
 const formSchema = z.object({
   headerCode: z.string().trim().optional(),
@@ -35,11 +36,13 @@ const ScriptEditor = ({ scripts }: { scripts: Script }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      bannerAd_300_250: scripts?.adScript?.bannerAd_300_250 || `<script></script>`,
+      bannerAd_300_250:
+        scripts?.adScript?.bannerAd_300_250 || `<script></script>`,
       bodyCode: scripts?.bodyCode || `<script></script>`,
       footerCode: scripts?.footerCode || `<script></script>`,
       headerCode: scripts?.headerCode || `<script></script>`,
-      longBannerAd_468_60: scripts?.adScript?.longBannerAd_468_60 || `<script></script>`,
+      longBannerAd_468_60:
+        scripts?.adScript?.longBannerAd_468_60 || `<script></script>`,
     },
   });
 
@@ -47,14 +50,14 @@ const ScriptEditor = ({ scripts }: { scripts: Script }) => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     const valuesToSendOnKv: Script = {
-         headerCode: values.headerCode!,
-         footerCode: values.footerCode!,
-         bodyCode: values.bodyCode!,
-         adScript: {
-          bannerAd_300_250: values.bannerAd_300_250!,
-          longBannerAd_468_60: values.longBannerAd_468_60!,
-         }
-    }
+      headerCode: values.headerCode!,
+      footerCode: values.footerCode!,
+      bodyCode: values.bodyCode!,
+      adScript: {
+        bannerAd_300_250: values.bannerAd_300_250!,
+        longBannerAd_468_60: values.longBannerAd_468_60!,
+      },
+    };
     axios
       .put(`${evarConts.cloudflareKvUrl}/api/scripts`, valuesToSendOnKv)
       .then((res) => {
@@ -127,6 +130,10 @@ const ScriptEditor = ({ scripts }: { scripts: Script }) => {
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription>
+                    Recommended ad size: 468x60 pixels, or a size close to it
+                    for optimal display.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -144,6 +151,10 @@ const ScriptEditor = ({ scripts }: { scripts: Script }) => {
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription>
+                    Recommended ad size: 300x250 pixels, or a size close to it
+                    for optimal display.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
