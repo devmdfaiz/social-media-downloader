@@ -3,19 +3,16 @@ import { TypographyH2 } from "./typography";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import BodyAdScript from "../globle/ad";
+import { Content as TContent } from "@/lib/database/db";
 
 const Content = ({
   htmlContent,
   bannerAd_300_250,
   longBannerAd_468_60,
 }: {
-  htmlContent: string;
+  htmlContent: TContent;
   longBannerAd_468_60: string;
   bannerAd_300_250: string;
 }) => {
@@ -37,7 +34,7 @@ const Content = ({
             <CardContent className="mt-5 p-0">
               <div
                 className="tiptap"
-                dangerouslySetInnerHTML={{ __html: htmlContent }}
+                dangerouslySetInnerHTML={{ __html: htmlContent.content }}
               />
             </CardContent>
           </Card>

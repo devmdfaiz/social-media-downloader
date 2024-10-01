@@ -31,7 +31,9 @@ const Tiptap = ({
   form: any;
   value: string;
 }) => {
+
   const editor = useEditor({
+    immediatelyRender: false, // Ensure this is set to false
     extensions: [
       StarterKit,
       Underline,
@@ -43,11 +45,10 @@ const Tiptap = ({
         autolink: true,
       }),
     ],
-    content: value
-      ? value
-      : "<p>Add your description here (Remove me)</p>",
+    content: value ? value : "<p>Add your description here (Remove me)</p>",
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
+
       field.onChange(html);
     },
     editorProps: {

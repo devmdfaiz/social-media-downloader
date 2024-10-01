@@ -265,7 +265,7 @@ export const VerifyKey = () => {
           showToast(data.message, "", "Close", () => {});
 
           seedAllData({
-            content: { content: htmlContent },
+            content: htmlContent,
             contactData: contact,
             faqsData: faqs,
             footerData: { footer },

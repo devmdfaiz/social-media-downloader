@@ -38,11 +38,12 @@ const AdminPage = async () => {
     footer
   }: TResponse = res;
 
+
   return (
     <div>
       <HeroEditor heroContent={heroContent} />
       <GuideEditor guides={guides} />
-      <ContentEditor htmlContent={htmlContent?.content} />
+      <ContentEditor htmlContent={htmlContent} />
       <TestimonialEditor testimonials={testimonials} />
       <FAQEditor faqs={faqs} />
       <ContactEditor contact={contact} />

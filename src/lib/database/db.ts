@@ -50,6 +50,11 @@ export interface Contact {
   email: string;
 }
 
+export interface Content {
+  page: string;
+  content: string;
+}
+
 export const heroContent: THeroContent[] = [
   {
     page: "/instagram-reels-download",
@@ -140,88 +145,255 @@ export const guides: TGuide[] = [
   },
 ];
 
-export const htmlContent = `<div class="max-w-7xl mx-auto p-6">
-<!-- Section: List of Providing Platforms -->
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold mb-4">
-    List of Providing Platforms
-  </h2>
-  <p class="text-lg leading-relaxed mb-4">
-    We've engineered our exclusive social media video downloader to be as versatile as possible, covering a broad range of popular platforms, including:
-  </p>
-  <ul class="list-disc pl-5 space-y-2 text-lg">
-    <li>Facebook</li>
-    <li>Instagram</li>
-    <li>Twitter</li>
-    <li>TikTok</li>
-    <li>YouTube</li>
-  </ul>
-  <p class="text-lg leading-relaxed mt-4">
-    From everyday users to established brands and high-level influencers, we're here to streamline and simplify your social media experience with quick and easy video downloads!
-  </p>
-</section>
+export const htmlContent: Content[] = [
+  {
+    page: "/instagram-reels-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        Instagram Reels Downloader - Download Reels Instantly
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Download your favorite Instagram Reels videos effortlessly with our tool. Save high-quality videos in just a few clicks, ensuring you never miss out on your preferred content, whether for offline viewing or reposting.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">How to Download Instagram Reels?</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Select the Instagram Reels video you want to download.</li>
+        <li>Copy the URL of the video.</li>
+        <li>Paste it into the designated field on our downloader tool.</li>
+        <li>Click "Download" and choose the desired video quality.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/instagram-posts-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        Instagram Posts Downloader - Save Your Favorite Photos & Videos
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Our Instagram Posts Downloader allows you to save Instagram photos and videos with ease. Whether it's your favorite travel photo or an inspiring video, you can download them directly to your device in seconds.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">Steps to Download Instagram Posts</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Navigate to the Instagram post you want to download.</li>
+        <li>Copy the post's URL and paste it into our downloader.</li>
+        <li>Click "Download" to save the post in your preferred format and quality.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/instagram-stories-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        Instagram Stories Downloader - Save Stories Before They Disappear
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Want to save Instagram Stories before they vanish? Our Instagram Stories Downloader ensures that you never miss out on memorable moments. Download Stories in high quality before they expire and keep them forever.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">How to Download Instagram Stories?</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Find the Instagram Story you want to download.</li>
+        <li>Copy the URL of the Story and paste it into our downloader tool.</li>
+        <li>Select "Download" to save the Story to your device in seconds.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/instagram-igtv-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        Instagram IGTV Downloader - Save Long-Form IGTV Videos
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Download IGTV videos from Instagram with our easy-to-use tool. Whether it's educational content or entertaining long-form videos, save IGTV videos in full quality to watch offline.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">How to Download IGTV Videos?</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Open the IGTV video you want to download on Instagram.</li>
+        <li>Copy the IGTV video link.</li>
+        <li>Paste it into our IGTV downloader and click "Download."</li>
+        <li>Select your preferred video resolution and download the video.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/facebook-videos-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        Facebook Video Downloader - Download Facebook Videos Quickly
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Our Facebook Video Downloader lets you save Facebook videos to your device for offline viewing. Download videos in high-quality format directly from Facebook with no hassle.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">How to Download Facebook Videos?</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Locate the Facebook video you want to download.</li>
+        <li>Copy the video URL from Facebook.</li>
+        <li>Paste it into our Facebook downloader and click "Download."</li>
+        <li>Select the desired video quality and start your download.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/facebook-stories-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        Facebook Stories Downloader - Save Stories Before They Expire
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Use our Facebook Stories Downloader to save Stories before they disappear. Easily download Stories from Facebook in just a few steps, ensuring you keep a copy of the moments you love.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">How to Download Facebook Stories?</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Open the Facebook Story you wish to download.</li>
+        <li>Copy the Story URL and paste it into our downloader.</li>
+        <li>Click "Download" and save the Story to your device.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/tiktok-videos-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        TikTok Video Downloader - Save TikTok Videos Without Watermarks
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Download TikTok videos easily with our TikTok downloader. Save videos in high quality without any watermarks. Perfect for saving your favorite TikTok content for offline use.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">Steps to Download TikTok Videos</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Find the TikTok video you want to download.</li>
+        <li>Copy the video URL and paste it into our tool.</li>
+        <li>Click "Download" and choose your preferred quality.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/tiktok-stories-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        TikTok Stories Downloader - Save Stories Before They're Gone
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        With our TikTok Stories Downloader, you can capture fleeting moments before they disappear. Download TikTok stories easily and keep them on your device to relive your favorite content anytime.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">How to Download TikTok Stories?</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Navigate to the TikTok story you wish to download.</li>
+        <li>Copy the story URL.</li>
+        <li>Paste the URL into our downloader tool.</li>
+        <li>Click "Download" to save the story in your preferred quality.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/youtube-videos-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        YouTube Video Downloader - Download Videos Instantly
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Download YouTube videos easily with our YouTube Video Downloader. Save your favorite videos in various formats and qualities for offline viewing or sharing with friends.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">How to Download YouTube Videos?</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Open the YouTube video you want to download.</li>
+        <li>Copy the video URL from the address bar.</li>
+        <li>Paste the URL into our downloader tool.</li>
+        <li>Select your desired format and quality, then click "Download."</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/social-media-downloader",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        Social Media Downloader - All-in-One Downloader for Your Needs
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Our Social Media Downloader is your go-to solution for downloading content from various platforms. Whether it's videos, photos, or stories, we've got you covered with a user-friendly interface.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">Supported Platforms</h3>
+      <ul class="list-disc pl-5 space-y-3 text-lg">
+        <li>Instagram</li>
+        <li>Facebook</li>
+        <li>TikTok</li>
+        <li>YouTube</li>
+        <li>And more...</li>
+      </ul>
+      <h3 class="text-xl font-semibold mb-3">How to Use the Social Media Downloader?</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Select the platform from which you want to download content.</li>
+        <li>Copy the URL of the video or post.</li>
+        <li>Paste it into our downloader tool and click "Download."</li>
+        <li>Choose your preferred format and quality to save the content.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+  {
+    page: "/youtube-shorts-download",
+    content: `
+    <div class="max-w-7xl mx-auto p-6">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-4">
+        YouTube Shorts Downloader - Save Your Favorite Shorts
+      </h2>
+      <p class="text-lg leading-relaxed mb-4">
+        Download YouTube Shorts easily and quickly with our YouTube Shorts Downloader. Save entertaining and informative shorts for offline viewing without any hassle.
+      </p>
+      <h3 class="text-xl font-semibold mb-3">How to Download YouTube Shorts?</h3>
+      <ol class="list-decimal pl-5 space-y-3 text-lg">
+        <li>Find the YouTube Short you wish to download.</li>
+        <li>Copy the Shorts URL from the address bar.</li>
+        <li>Paste it into our downloader tool.</li>
+        <li>Select your preferred quality and click "Download" to save it.</li>
+      </ol>
+    </section>
+    </div>
+    `,
+  },
+];
 
-<!-- Section: How to Download Videos -->
-<section class="mb-12">
-  <h2 class="text-2xl font-semibold mb-4">
-    How to Download Videos With Our Social Media Video Downloader?
-  </h2>
-  <p class="text-lg leading-relaxed mb-4">
-    Our innovative tool gives you the opportunity to download any social media video in just a few clicks. Simply follow the four easy steps outlined below to get a hard copy of your chosen video saved on your device:
-  </p>
-  <ol class="list-decimal pl-5 space-y-3 text-lg">
-    <li>
-      <span class="font-semibold">Select the platform</span> from which you would like to download a video from options including Instagram, Facebook, Twitter, TikTok, and YouTube.
-    </li>
-    <li>
-      Copy and paste the <span class="font-semibold">video URL</span> you would like to download into the box on the screen, ensuring it is accurate.
-    </li>
-    <li>
-      Once your video has been located and processed, the platform will show a <span class="font-semibold">Download Video</span> button. You can click on it to start your download.
-    </li>
-    <li>
-      Downloading videos with our exclusive tool also allows you to choose between a variety of video quality options, so you can select the exact resolution and file size that suits your requirements.
-    </li>
-  </ol>
-</section>
-
-<!-- Section: Features of Our Social Media Video Downloader -->
-<section>
-  <h2 class="text-2xl font-semibold mb-4">
-    Features of Our Social Media Video Downloader
-  </h2>
-  <p class="text-lg leading-relaxed mb-4">
-    We've carefully optimized our app to bring you all the benefits of a cutting-edge social media video downloader with zero complications. Use our tool to download videos to your device and enjoy the following features and benefits:
-  </p>
-  <ul class="list-none space-y-6 text-lg">
-    <li>
-      <span class="font-semibold">1. User-Friendly Interface</span>
-      <p class="mt-1 leading-relaxed">
-        From start to finish, you'll find our user-friendly tool simple and straightforward. No experience or expertise is necessary; just enter a couple of basic details to download your favorite social media videos in seconds. We're here to do the hard work, so you don't have to!
-      </p>
-    </li>
-    <li>
-      <span class="font-semibold">2. Flexible Resolution Options</span>
-      <p class="mt-1 leading-relaxed">
-        Enjoy the freedom to choose from a broad range of resolution options and file sizes, enabling you to choose the exact video quality to suit your needs. Whether looking for full HD or something that won't take up a lot of space on your device, we've got you covered.
-      </p>
-    </li>
-    <li>
-      <span class="font-semibold">3. Requires No Installation</span>
-      <p class="mt-1 leading-relaxed">
-        As our social media video downloader is browser-based, you'll not need to download software or install extensions. There's also no need to open an account; simply access our website anytime from any device to get started.
-      </p>
-    </li>
-    <li>
-      <span class="font-semibold">4. Watermark-Free</span>
-      <p class="mt-1 leading-relaxed">
-        Unlike some, we don't process and download videos with annoying watermarks. Every video you download will appear exactly as it does online, ensuring you get a fresh, picture-perfect copy in your preferred resolution.
-      </p>
-    </li>
-  </ul>
-</section>
-</div>
-`;
 
 export const testimonials: TTestimonials[] = [
   {

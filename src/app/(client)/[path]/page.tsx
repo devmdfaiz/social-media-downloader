@@ -6,6 +6,7 @@ import Guide from "@/components/custom/guide";
 import Testimonial from "@/components/custom/testimonial";
 import {
   Contact,
+  Content as TContent,
   FAQItem,
   Script,
   TGuide,
@@ -22,7 +23,8 @@ import { getCleanPath } from "@/lib/utils";
 export interface TResponse {
   heroContent: THeroContent[];
   guides: TGuide[];
-  htmlContent: { content: string };
+  // htmlContent: { content: string };
+  htmlContent: TContent[];
   testimonials: TTestimonials[];
   faqs: FAQItem[];
   contact: Contact;
@@ -86,14 +88,18 @@ const HomeDownloadPage = async ({ params }: { params: { path: string } }) => {
     scripts,
   }: TResponse = res;
 
-  const filterContent = heroContent.filter((content, i) => {
+  const filteredHero = heroContent.filter((content, i) => {
+    return content.page === `/${params.path}`;
+  });
+
+  const filteredContent = htmlContent.filter((content, i) => {
     return content.page === `/${params.path}`;
   });
 
   return (
     <div className="h-full w-full">
       <Hero
-        content={filterContent[0]}
+        content={filteredHero[0]}
         bannerAd_300_250={scripts?.adScript?.bannerAd_300_250}
         longBannerAd_468_60={scripts?.adScript?.longBannerAd_468_60}
       />
@@ -104,7 +110,7 @@ const HomeDownloadPage = async ({ params }: { params: { path: string } }) => {
         longBannerAd_468_60={scripts?.adScript?.longBannerAd_468_60}
       />
       <Content
-        htmlContent={htmlContent?.content}
+        htmlContent={filteredContent[0]}
         bannerAd_300_250={scripts?.adScript?.bannerAd_300_250}
         longBannerAd_468_60={scripts?.adScript?.longBannerAd_468_60}
       />
