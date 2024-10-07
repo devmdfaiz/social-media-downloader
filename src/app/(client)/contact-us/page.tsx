@@ -1,35 +1,25 @@
 import { TypographyP } from "@/components/custom/typography";
 import { AlertDestructive } from "@/components/globle/error";
 import { getContactPageCachedData, getSeoCachedData } from "@/lib/cache-data";
-import { Contact, seoData, TSEOData } from "@/lib/database/db";
+import { Contact } from "@/lib/database/db";
 import { Metadata } from "next";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export async function generateMetadata(): Promise<Metadata> {
   let res;
   try {
-    res = await getSeoCachedData();
+    res = await getContactPageCachedData();
   } catch (error) {
-    console.error("Error in client home page: ", error);
-    res = { seoData };
-  }
+    console.error("Error in client contact page: ", error);
+  }  
 
-  const contact: TSEOData[] = res["seo-cont"];
-
-  const filterSeoData = contact.find((content, i) => {
-    return content.page === `/contact-us`;
-  });
+  const contact: Contact = res["contact-cont"];
 
   return {
-    title: filterSeoData?.metaTitle,
-    description: filterSeoData?.metaDescription,
-    keywords: filterSeoData?.keywords,
+    title: contact?.seo?.metaTitle,
+    description: contact?.seo?.metaDescription,
+    keywords: contact?.seo?.keywords,
   };
 }
 

@@ -29,18 +29,6 @@ import { clientError } from "@/lib/error/error-extracter";
 import { useState } from "react";
 import { Loader } from "lucide-react";
 import { seedAllData } from "@/lib/action";
-import {
-  contact,
-  faqs,
-  footer,
-  guides,
-  heroContent,
-  htmlContent,
-  policies,
-  scripts,
-  seoData,
-  testimonials,
-} from "@/lib/database/db";
 import { TypographyMuted } from "../custom/typography";
 import {
   Select,
@@ -264,18 +252,7 @@ export const VerifyKey = () => {
         if (status === 200) {
           showToast(data.message, "", "Close", () => {});
 
-          seedAllData({
-            content: htmlContent,
-            contactData: contact,
-            faqsData: faqs,
-            footerData: { footer },
-            guideData: guides,
-            heroData: heroContent,
-            policyData: policies,
-            scriptsData: scripts,
-            seoData: seoData,
-            testimonialsData: testimonials,
-          }).then((res) => {
+          seedAllData().then((res) => {
             setIsLoading(false);
             if (res?.status) {
               showToast(res.message, "", "Close", () => {});

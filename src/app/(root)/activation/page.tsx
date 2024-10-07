@@ -13,9 +13,9 @@ const ActivationPage = async () => {
 
   const productInfo = res["product-info"];
 
-  if (productInfo) {
-    redirect("/");
-  }
+  // if (productInfo) {
+  //   redirect("/");
+  // }
 
   return <ActivationForm />;
 };

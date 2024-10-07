@@ -1,7 +1,23 @@
 "use server";
-
 import axios, { AxiosError } from "axios";
 import { evarConts } from "./constants/evarConts";
+import {
+  contact,
+  facebookStoriesDownload,
+  facebookVideosDownload,
+  footer,
+  instagramIGTVDownload,
+  instagramPostsDownload,
+  instagramReelsDownload,
+  instagramStoriesDownload,
+  policies,
+  scripts,
+  socialMediaDownloader,
+  tiktokStoriesDownload,
+  tiktokVideosDownload,
+  youtubeShortsDownload,
+  youtubeVideosDownload,
+} from "./database/db";
 
 // Centralized function to make PUT requests and handle errors
 const putRequest = async (url: string, data: any) => {
@@ -42,18 +58,24 @@ const putRequest = async (url: string, data: any) => {
 };
 
 // Server action to seed all data
-export const seedAllData = async (values: {
-  contactData: any;
-  content: any;
-  faqsData: any;
-  footerData: any;
-  guideData: any;
-  heroData: any;
-  policyData: any;
-  scriptsData: any;
-  seoData: any;
-  testimonialsData: any;
-}) => {
+export const seedAllData = async () => {
+  const values = {
+    policies,
+    instagramReelsDownload,
+    instagramPostsDownload,
+    instagramStoriesDownload,
+    instagramIGTVDownload,
+    facebookVideosDownload,
+    facebookStoriesDownload,
+    tiktokVideosDownload,
+    tiktokStoriesDownload,
+    youtubeVideosDownload,
+    youtubeShortsDownload,
+    socialMediaDownloader,
+    scripts,
+    footer,
+    contact,
+  };
   const response = await putRequest(`${evarConts.cloudflareKvUrl}/api`, values);
   return response;
 };

@@ -4,38 +4,25 @@ import Hero from "@/components/custom/hero";
 import Preview from "@/components/custom/preview";
 import Guide from "@/components/custom/guide";
 import Testimonial from "@/components/custom/testimonial";
-import {
-  Contact,
-  Content as TContent,
-  FAQItem,
-  Script,
-  TGuide,
-  THeroContent,
-  TSEOData,
-  TTestimonials,
-  seoData,
-} from "@/lib/database/db";
+import { Script, Route, customRoutes } from "@/lib/database/db";
 import { AlertDestructive } from "@/components/globle/error";
 import { Metadata } from "next";
 import { getPageAllCachedData } from "@/lib/cache-data";
 import { getCleanPath } from "@/lib/utils";
+import { NonBodyAsScript } from "@/components/globle/ad";
+import Footer from "@/components/custom/footer";
+import Header from "@/components/custom/header";
+import { ProductInfoError } from "@/components/globle/info";
 
 export interface TResponse {
-  heroContent: THeroContent[];
-  guides: TGuide[];
-  // htmlContent: { content: string };
-  htmlContent: TContent[];
-  testimonials: TTestimonials[];
-  faqs: FAQItem[];
-  contact: Contact;
-  seoData: TSEOData[];
+  routeContent: Route;
   scripts: Script;
-  footer: {footer: string};
+  footer: string;
   productInfo: { activationKey: string; data: string } | string;
 }
 
 export function generateStaticParams() {
-  const path = getCleanPath(seoData);
+  const path = getCleanPath(customRoutes);
   return path;
 }
 
@@ -46,22 +33,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   let res;
   try {
-    res = await getPageAllCachedData();
+    res = await getPageAllCachedData(params.path);
   } catch (error) {
     console.error("Error in client home page: ", error);
-    res = { seoData };
   }
 
-  const { seoData: dynamicSeoData }: TResponse = res;
+  const response: TResponse = res;
 
-  const filterSeoData = dynamicSeoData.find((content, i) => {
-    return content.page === `/${params.path}`;
-  });
+  const seo = response?.routeContent?.seo;
 
   return {
-    title: filterSeoData?.metaTitle,
-    description: filterSeoData?.metaDescription,
-    keywords: filterSeoData?.keywords,
+    title: seo?.metaTitle,
+    description: seo?.metaDescription,
+    keywords: seo?.keywords,
   };
 }
 
@@ -69,62 +53,45 @@ const HomeDownloadPage = async ({ params }: { params: { path: string } }) => {
   let res;
 
   try {
-    res = await getPageAllCachedData();
+    res = await getPageAllCachedData(params.path);
   } catch (error) {
     console.error("Error in client home page: ", error);
-    res = "error";
+    res = { type: "error", error };
   }
 
-  if (res === "error") {
-    return <AlertDestructive message={res} />;
+  if (res.type === "error") {
+    return <AlertDestructive message={JSON.stringify(res.error)} />;
   }
 
   const {
-    heroContent,
-    guides,
-    htmlContent,
-    testimonials,
-    faqs,
     scripts,
+    footer,
+    productInfo,
+    routeContent: { content, faqs, guide, hero, testimonials },
   }: TResponse = res;
 
-  const filteredHero = heroContent.filter((content, i) => {
-    return content.page === `/${params.path}`;
-  });
-
-  const filteredContent = htmlContent.filter((content, i) => {
-    return content.page === `/${params.path}`;
-  });
+  if (productInfo === "error") {
+    return <ProductInfoError />;
+  }
 
   return (
-    <div className="h-full w-full">
-      <Hero
-        content={filteredHero[0]}
-        bannerAd_300_250={scripts?.adScript?.bannerAd_300_250}
-        longBannerAd_468_60={scripts?.adScript?.longBannerAd_468_60}
-      />
-      <Preview />
-      <Guide
-        guides={guides}
-        bannerAd_300_250={scripts?.adScript?.bannerAd_300_250}
-        longBannerAd_468_60={scripts?.adScript?.longBannerAd_468_60}
-      />
-      <Content
-        htmlContent={filteredContent[0]}
-        bannerAd_300_250={scripts?.adScript?.bannerAd_300_250}
-        longBannerAd_468_60={scripts?.adScript?.longBannerAd_468_60}
-      />
-      <Testimonial
-        testimonials={testimonials}
-        bannerAd_300_250={scripts?.adScript?.bannerAd_300_250}
-        longBannerAd_468_60={scripts?.adScript?.longBannerAd_468_60}
-      />
-      <Faq
-        faqs={faqs}
-        bannerAd_300_250={scripts?.adScript?.bannerAd_300_250}
-        longBannerAd_468_60={scripts?.adScript?.longBannerAd_468_60}
-      />
-    </div>
+    <>
+      <Header headerCode={scripts?.headerCode} />
+      <div className="h-full w-full">
+        <Hero
+          content={hero}
+          bannerAd_300_250={scripts?.adScript?.bannerAd_300_250}
+          longBannerAd_468_60={scripts?.adScript?.longBannerAd_468_60}
+        />
+        <Preview />
+        <Guide guides={guide} />
+        <Content htmlContent={content} />
+        <Testimonial testimonials={testimonials} />
+        <Faq faqs={faqs} />
+      </div>
+      <NonBodyAsScript script={scripts?.bodyCode} />
+      <Footer footerCode={scripts?.footerCode} footer={footer} />
+    </>
   );
 };
 

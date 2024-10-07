@@ -16,28 +16,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const Faq = ({
-  faqs,
-  bannerAd_300_250,
-  longBannerAd_468_60,
-}: {
-  faqs: FAQItem[];
-  longBannerAd_468_60: string;
-  bannerAd_300_250: string;
-}) => {
+const Faq = ({ faqs }: { faqs: FAQItem[] }) => {
   return (
     <>
       <div className="my-11">
         <TypographyH2 className="text-3xl font-bold text-center text-primary">
           {`Frequently asked question(s)`}
         </TypographyH2>
-
-        {/* ad script */}
-        <BodyAdScript
-          bannerAd_300_250={bannerAd_300_250}
-          longBannerAd_468_60={longBannerAd_468_60}
-        />
-
         <Card>
           <CardContent className="my-4">
             <Accordion type="single" collapsible className="w-full">

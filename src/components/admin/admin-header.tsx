@@ -14,8 +14,8 @@ const links: TLink[] = [
     title: "General",
   },
   {
-    path: "/admin/seo-editor",
-    title: "Seo",
+    path: "/admin/contact-editor",
+    title: "Contact",
   },
   {
     path: "/admin/policy-editor",
@@ -24,6 +24,10 @@ const links: TLink[] = [
   {
     path: "/admin/script-editor",
     title: "Script",
+  },
+  {
+    path: "/admin/footer-editor",
+    title: "Footer",
   },
 ];
 

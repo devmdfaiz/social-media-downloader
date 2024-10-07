@@ -11,28 +11,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-const Testimonial = ({
-  testimonials,
-  bannerAd_300_250,
-  longBannerAd_468_60,
-}: {
-  testimonials: TTestimonials[];
-  longBannerAd_468_60: string;
-  bannerAd_300_250: string;
-}) => {
+const Testimonial = ({ testimonials }: { testimonials: TTestimonials[] }) => {
   return (
     <>
       <div className="my-11">
         <TypographyH2 className="text-3xl font-bold text-center my-8 text-primary">
           Testimonials
         </TypographyH2>
-
-        {/* ad script */}
-        <BodyAdScript
-          bannerAd_300_250={bannerAd_300_250}
-          longBannerAd_468_60={longBannerAd_468_60}
-        />
-
         <div className="flex justify-between items-start gap-5 flex-wrap md:flex-nowrap">
           {testimonials.length > 0 &&
             testimonials.map((testimonial, i) => {

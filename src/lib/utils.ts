@@ -36,6 +36,6 @@ export const showToast = (
 };
 
 // Utility function to remove leading slash
-export const getCleanPath = (contentArray: { page: string }[]): string[] => {
-  return contentArray.map((item) => item.page.replace(/^\//, ""));
+export const getCleanPath = (contentArray: string[]): string[] => {
+  return contentArray.map((item) => item.replace(/^\//, ""));
 };

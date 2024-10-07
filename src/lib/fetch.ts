@@ -32,9 +32,9 @@ const fetchData = async (url: string) => {
 };
 
 // Function Wrappers to fetch data from specific APIs
-export const getPageAllData = async () => {
-  const res = await fetchData(`${evarConts.cloudflareKvUrl}/api`);
-  
+export const getPageAllData = async (params: string) => {
+  const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/all/${params}`);
+
   return res?.data;
 };
 
@@ -53,7 +53,7 @@ export const getPolicyPageData = async () => {
 export const getSEOData = async () => {
   const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/seo`);
 
-  console.log("seo function data: ", res)
+  console.log("seo function data: ", res);
 
   return res;
 };
