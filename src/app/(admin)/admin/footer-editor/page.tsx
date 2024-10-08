@@ -13,17 +13,14 @@ const ContactEditorPage = async () => {
     res = await getFooterData();
   } catch (error) {
     console.error("Error in contact editor page: ", error);
-    res = "error";
-  }  
-
-  console.log("footer: ", res);
-  
-
-  if (res === "error") {
-    return <AlertDestructive message={res} />;
+    res = error;
   }
 
-  return <FooterEditor footer={res.footer} />;
+  if (res === "error") {
+    return <AlertDestructive message={JSON.stringify(res)} />;
+  }
+
+  return <FooterEditor footer={res?.footer} />;
 };
 
 export default ContactEditorPage;

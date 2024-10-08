@@ -73,12 +73,12 @@ const AdminPageClient = () => {
   const [pageContent, setPageContent] = useState<TResponse | "error">();
   const [isLoading, setIsLoading] = useState(false);
   const [testimonialFields, setTestimonialFields] = useState<TTestimonials[]>([
-    { name: "", cont: "" },
+    { name: "null", cont: "null" },
   ]);
   const [faqFields, setFaqFields] = useState<FAQItem[]>([
     {
-      answer: "",
-      question: "",
+      answer: "null",
+      question: "null",
     },
   ]);
 
@@ -106,8 +106,33 @@ const AdminPageClient = () => {
       const cleanPath = path[0];
       getPageAllCachedData(cleanPath)
         .then((res) => {
-          setPageContent(res);
-          handlePageChange();
+          setPageContent(() => {
+            form.setValue("hero.title", res?.routeContent.hero.title);
+
+            form.setValue(
+              "hero.description",
+              res?.routeContent.hero.description
+            );
+
+            form.setValue("guide", res?.routeContent.guide);
+
+            form.setValue("content", res?.routeContent.content);
+
+            form.setValue("seo.keywords", res?.routeContent.seo.keywords);
+
+            form.setValue("seo.metaTitle", res?.routeContent.seo.metaTitle);
+
+            form.setValue(
+              "seo.metaDescription",
+              res?.routeContent.seo.metaDescription
+            );
+
+            setTestimonialFields(res.routeContent.testimonials);
+
+            setFaqFields(res.routeContent.faqs);
+
+            return res;
+          });
         })
         .catch((error) => {
           setPageContent("error");
@@ -117,42 +142,6 @@ const AdminPageClient = () => {
 
   if (pageContent === "error") {
     return <AlertDestructive message={JSON.stringify(pageContent)} />;
-  }
-
-  const content = pageContent?.routeContent?.content;
-  const faqs = pageContent?.routeContent?.faqs || faqFields
-  const guide = pageContent?.routeContent?.guide;
-  const hero = pageContent?.routeContent?.hero;
-  const testimonials = pageContent?.routeContent?.testimonials || testimonialFields;
-
-  function handlePageChange() {
-    if (pageContent !== "error") {
-      if (pageContent) {
-        form.setValue("hero.title", pageContent?.routeContent.hero.title);
-
-        form.setValue(
-          "hero.description",
-          pageContent?.routeContent.hero.description
-        );
-
-        form.setValue("guide", pageContent?.routeContent.guide);
-
-        form.setValue("content", pageContent?.routeContent.content);
-
-        form.setValue("seo.keywords", pageContent?.routeContent.seo.keywords);
-
-        form.setValue("seo.metaTitle", pageContent?.routeContent.seo.metaTitle);
-
-        form.setValue(
-          "seo.metaDescription",
-          pageContent?.routeContent.seo.metaDescription
-        );
-
-        setTestimonialFields(testimonials);
-
-        setFaqFields(faqs);
-      }
-    }
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -193,9 +182,16 @@ const AdminPageClient = () => {
       });
   }
 
+  console.log(
+    "selected page: ",
+    form.watch("page"),
+    " page content: ",
+    pageContent
+  );
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mt-5">
         <FormField
           control={form.control}
           name="page"
@@ -229,19 +225,23 @@ const AdminPageClient = () => {
             <ContentEditor form={form} />
           </>
         )}
-        {testimonialFields && (
+        {testimonialFields[0].name !== "null" && (
           <TestimonialEditor
             setTestimonialFields={setTestimonialFields}
             testimonialFields={testimonialFields}
           />
         )}
-        {faqFields && (
+        {faqFields[0].answer !== "null" && (
           <FAQEditor faqFields={faqFields} setFaqFields={setFaqFields} />
         )}
-        {!isLoading ? (
-          <Button type="submit">Submit</Button>
-        ) : (
-          <Loader className="animate-spin text-primary" />
+        {faqFields[0].answer !== "null" && (
+          <>
+            {!isLoading ? (
+              <Button type="submit">Submit</Button>
+            ) : (
+              <Loader className="animate-spin text-primary" />
+            )}
+          </>
         )}
       </form>
     </Form>

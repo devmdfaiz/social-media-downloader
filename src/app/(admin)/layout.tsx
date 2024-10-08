@@ -22,7 +22,7 @@ export default async function RootLayout({
   } catch (error) {
     console.error("Error in client main layout: ", error);
     res = "error";
-  }
+  }  
 
   const productInfo = res["product-info"];
 

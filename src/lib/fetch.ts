@@ -67,7 +67,7 @@ export const getScriptData = async () => {
 export const getFooterData = async () => {
   const res = await fetchData(`${evarConts.cloudflareKvUrl}/api/footer`);
 
-  return res?.data;
+  return res;
 };
 
 export const getProductInfo = async () => {

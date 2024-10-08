@@ -50,11 +50,11 @@ const TestimonialEditor = ({
     <div className="my-11 space-y-3">
       <TypographyH3>Testimonial Fields</TypographyH3>
 
-      <div className="border border-primary/70 p-5">
-        <div>
+      <div className="border border-primary/70 p-5 space-y-8">
+        <div className="space-y-8">
           {testimonialFields.length > 0 &&
             testimonialFields.map((Tfield, i) => (
-              <div className="border border-foreground/30 p-3 relative" key={i}>
+              <div className="border border-foreground/30 p-3 relative space-y-8" key={i}>
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>

@@ -48,10 +48,13 @@ const FAQEditor = ({
       <TypographyH3>FAQ Fields</TypographyH3>
 
       <div className="border border-primary/70 p-5">
-        <div>
+        <div className="space-y-8">
           {faqFields.length > 0 &&
             faqFields.map((faq, i) => (
-              <div className="border border-foreground/30 p-3 relative" key={i}>
+              <div
+                className="border border-foreground/30 p-3 relative space-y-8"
+                key={i}
+              >
                 <FormItem>
                   <FormLabel>Question</FormLabel>
                   <FormControl>

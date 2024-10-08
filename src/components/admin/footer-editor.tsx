@@ -33,6 +33,7 @@ const FooterEditor = ({ footer }: { footer: string }) => {
       footer: footer || "",
     },
   });
+  
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {

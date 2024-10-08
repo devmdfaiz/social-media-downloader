@@ -20,7 +20,7 @@ const HeroEditor = ({
   return (
     <div className="my-11 space-y-3">
       <TypographyH3>Hero Fields</TypographyH3>
-      <div className="border border-primary/70 p-5">
+      <div className="border border-primary/70 p-5 space-y-8">
         <FormField
           control={form.control}
           name="hero.title"

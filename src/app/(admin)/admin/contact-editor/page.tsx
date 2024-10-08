@@ -14,11 +14,11 @@ const ContactEditorPage = async () => {
     res = await getContactPageData();
   } catch (error) {
     console.error("Error in contact editor page: ", error);
-    res = "error";
+    res = error;
   }  
 
   if (res === "error") {
-    return <AlertDestructive message={res} />;
+    return <AlertDestructive message={JSON.stringify(res)} />;
   }
 
   const contact: Contact = res["contact-cont"];
